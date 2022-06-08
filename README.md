@@ -3,7 +3,7 @@
 [![LICENSE](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/ninashenker/c-origami/blob/main/LICENSE)
 [![Build and Test]()]()
 
-[Website and Leaderboards](https://www.corigami.org/) |
+[Website](https://www.corigami.org/) |
 [Dataset](link) |
 [GitHub](https://github.com/ninashenker/c-origami) |
 [Publications](#list-of-papers)
@@ -17,8 +17,9 @@ associated with the C. Origami project can be found
 
 ## Documentation
 
-### The CTCF/ATAC/DNA data
+### CTCF/ATAC/DNA data 
 
+### Hi-C ground truth data
 
 ### Code Repository
 
@@ -55,6 +56,12 @@ pip install -e .
 ```
 
 ## Training a model
+
+## Prediction
+
+## Editing/Perturbation
+
+## Screening
 
 
 ## License
