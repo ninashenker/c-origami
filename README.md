@@ -74,8 +74,8 @@ If you use the C-Origami code in your project, please cite the bioRxiv
 paper:
 
 ```BibTeX
-@inproceedings{zbontar2018fastMRI,
-    title={{fastMRI}: An Open Dataset and Benchmarks for Accelerated {MRI}},
+@inproceedings{tan2020,
+    title={Cell type-specific prediction of 3D chromatin architecture},
     author={Jimin Tan and Javier Rodriguez-Hernaez and Theodore Sakellaropoulos and Francesco Boccalatte and Iannis Aifantis and Jane Skok and David Fenyö and Bo Xia and Aristotelis Tsirigos},
     journal = {bioRxiv e-prints},
     archivePrefix = "bioRxiv",
