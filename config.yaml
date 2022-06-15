@@ -1,0 +1,10 @@
+inference:
+  model_path: /gpfs/data/abl/home/shenkn01/Reizis_mm10/c-origami-tool/src/training/runs/Patski_mm10_2022-05-19T14:40:52.934896/state_dict_73.pt
+  input_folder: /gpfs/data/abl/home/shenkn01/hic_prediction/evaluation/data/mouse/Patski/processed_data
+  ctcf_name: peaks.bigwig
+  atac_name: 4DNFINU4WSEY.bw
+  chr_lengths: /gpfs/data/abl/home/shenkn01/hic_prediction/evaluation/data/mouse/Patski/raw_data/chr_length.json
+  chr_fa_path: /gpfs/data/abl/home/shenkn01/hic_prediction/evaluation/data/mouse/Patski/raw_data
+  chr_num: 1
+  start_pos: 10
+  task: predict
