@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 import numpy as np
 
-from transformers import BertModel, BertConfig
+#from transformers import BertModel, BertConfig
 
 class ConvBlock(nn.Module):
     def __init__(self, size, stride = 2, hidden_in = 64, hidden = 64):

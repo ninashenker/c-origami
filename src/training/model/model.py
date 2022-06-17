@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 
-import blocks
+import model.blocks as blocks
 
 def main():
     model = CNN(5).cuda()
@@ -14,7 +14,7 @@ class CNN(nn.Module):
         super(CNN, self).__init__()
         self.encoder = blocks.Encoder(input_size, output_size = 256, num_blocks = 12)
         # TODO Added
-        self.attention = blocks.AttnModule(hidden = 256, layers = 4)
+        #self.attention = blocks.AttnModule(hidden = 256, layers = 4)
         '''
         self.header = nn.Sequential(
                             nn.Conv2d(257, 64, 1),
@@ -39,7 +39,7 @@ class CNN(nn.Module):
         x = self.encoder(x)
         # TODO Added
         x = self.move_feature_forward(x)
-        x = self.attention(x)
+        #x = self.attention(x)
         x = self.move_feature_forward(x)
         #x = self.outer_cat(x)
         #x = self.append_dist_mat(x)

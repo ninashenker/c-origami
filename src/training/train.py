@@ -2,11 +2,12 @@ import os
 import datetime
 
 import torch
-from tqdm import tqdm
 
-from dataloader import GenomeDataset
-from model import CNN, CNN_dual_encoder
+from data.genome_dataset import GenomeDataset
+from model.model import CNN, CNN_dual_encoder
 from log import record_csv_entry, save_image, show_device
+
+from tqdm import tqdm
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 print('Using: ', device)
@@ -14,12 +15,23 @@ print('Using: ', device)
 # Data 
 batch_size = 8
 # TODO changed
-#data_root = '/gpfs/data/tsirigoslab/home/jt3545/hic_prediction/ingenious-evaluation/data/imr90/processed_data'
-data_root = '/gpfs/data/tsirigoslab/home/jt3545/hic_prediction/ingenious-evaluation/data/imr90/processed_data_bigwig'
-trainset = GenomeDataset(data_root, mode = 'train')
-valset = GenomeDataset(data_root, mode = 'val')
-trainloader = torch.utils.data.DataLoader(trainset, batch_size=batch_size, shuffle=True, num_workers=4)
-valloader = torch.utils.data.DataLoader(valset, batch_size=batch_size, shuffle=False, num_workers=4)
+
+data_root = '/gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data'
+assembly = 'hg38'
+celltype = 'imr90'
+celltype_root = f'{data_root}/{assembly}/{celltype}'
+
+genomic_features = [{'file_name' : 'ctcf_log2fc.bw',
+                        'norm' : None},
+                    {'file_name' : 'atac.bw',
+                        'norm' : 'log'}]
+
+trainset = GenomeDataset(celltype_root, genomic_features, mode = 'train')
+valset = GenomeDataset(celltype_root, genomic_features, mode = 'val')
+#trainset = GenomeDataset(data_root, mode = 'train')
+#valset = GenomeDataset(data_root, mode = 'val')
+trainloader = torch.utils.data.DataLoader(trainset, batch_size=batch_size, shuffle=True, num_workers=16, prefetch_factor=4)
+valloader = torch.utils.data.DataLoader(valset, batch_size=batch_size, shuffle=False, num_workers=8, prefetch_factor=4)
 
 # Model
 # TODO changed
@@ -45,7 +57,7 @@ save_interval = 1
 dna_only_epoches = 0
 run_name = 'IMR-90_dense_dual_encoder_one_direction'
 save_dir = f'runs/{run_name}_{datetime.datetime.now().isoformat()}'
-os.mkdir(save_dir)
+os.makedirs(save_dir, exist_ok = True)
 record_csv_entry(f'{save_dir}/loss.csv', 'Epoch, Train loss, Validation loss\n')
 
 for epoch in range(epochs):
@@ -74,7 +86,10 @@ for epoch in range(epochs):
     # Training loop
     model.train()
     for train_i, data_batch in enumerate(tqdm(trainloader)): 
-        seq, ctcf, atac, mat, start, end, chr_name, chr_idx = data_batch
+    #for train_i, data_batch in enumerate(trainloader): 
+        seq, features, mat, start, end, chr_name, chr_idx = data_batch
+        ctcf = features[0]
+        atac = features[1]
         seq = seq.to(device)
         ctcf = ctcf.to(device)
         atac = atac.to(device)
@@ -118,7 +133,10 @@ for epoch in range(epochs):
     model.eval()
     with torch.no_grad():
         for val_i, data_batch in enumerate(tqdm(valloader)):
-            seq, ctcf, atac, mat, start, end, chr_name, chr_idx = data_batch
+        #for val_i, data_batch in enumerate(valloader):
+            seq, features, mat, start, end, chr_name, chr_idx = data_batch
+            ctcf = features[0]
+            atac = features[1]
             seq = seq.to(device)
             ctcf = ctcf.to(device)
             atac = atac.to(device)
