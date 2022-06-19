@@ -11,8 +11,6 @@ from omegaconf import DictConfig, OmegaConf
 import model.model as corigami_models
 from data import genome_dataset
 
-from log import record_csv_entry, save_image, show_device
-
 @hydra.main(config_path="config", config_name="default")
 def main(args : DictConfig) -> None:
     init_training(args)
