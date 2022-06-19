@@ -1,0 +1,5 @@
+# CTCF log2foldchange configuration file
+
+ctcf_log2fc:
+    file_name: 'ctcf_log2fc.bw'
+    norm: null

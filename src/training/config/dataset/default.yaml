@@ -1,0 +1,11 @@
+# Default dataset setting
+
+defaults:
+    - genomic_features:
+        - ctcf_log2fc
+        - atac
+    - _self_
+
+data_root: '/gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data'
+assembly: 'hg38'
+celltype: 'imr90'

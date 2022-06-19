@@ -9,10 +9,12 @@ def main():
     celltype = 'imr90'
     celltype_root = f'{data_root}/{assembly}/{celltype}'
 
-    genomic_features = [{'file_name' : 'ctcf_log2fc.bw',
-                         'norm' : None},
-                        {'file_name' : 'atac.bw',
-                         'norm' : 'log'}]
+    genomic_features = {'ctcf_log2fc' :
+                            {'file_name' : 'ctcf_log2fc.bw',
+                             'norm' : None},
+                        'atac' : 
+                            {'file_name' : 'atac.bw',
+                             'norm' : 'log'}}
 
     dataset = GenomeDataset(celltype_root, genomic_features, mode = 'train')
     import pdb; pdb.set_trace()
@@ -86,7 +88,7 @@ class GenomeDataset(Dataset):
             feature_list: a list of genomic features (bigwig files)
         '''
         feat_list = []
-        for feat_item in feat_dicts:
+        for feat_item in list(feat_dicts.values()):
             file_name = feat_item['file_name']
             file_path = f'{root_dir}/{file_name}'
             norm = feat_item['norm']

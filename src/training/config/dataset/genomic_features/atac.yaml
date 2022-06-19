@@ -1,0 +1,5 @@
+# ATAC-seq configuration file
+
+atac:
+    file_name: 'atac.bw'
+    norm: 'log'

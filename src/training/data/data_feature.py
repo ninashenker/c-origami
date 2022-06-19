@@ -67,7 +67,7 @@ class HiCFeature(Feature):
     def __len__(self):
         return len(self.hic['0'])
 
-class GenomicFeature(Feature):
+class GenomicFeatureSingleThread(Feature):
 
     def __init__(self, path, norm):
         self.path = path
@@ -97,12 +97,31 @@ class GenomicFeature(Feature):
         return bw_file
 
     def feature_to_npy(self, chr_name, start, end):
-        bw_file = pbw.open(self.path)
-        signals = bw_file.values(chr_name, start, end)
+        signals = self.feature.values(chr_name, start, end)
         return np.array(signals)
 
     def length(self, chr_name):
         return self.feature.chroms(chr_name)
+
+class GenomicFeature(GenomicFeatureSingleThread):
+
+    def __init__(self, path, norm):
+        self.path = path
+        self.norm = norm
+        print(f'Feature path: {path} \n Normalization status: {norm}')
+
+    def load(self, path):
+        raise Exception('Left blank')
+
+    def feature_to_npy(self, chr_name, start, end):
+        with pbw.open(self.path) as bw_file:
+            signals = bw_file.values(chr_name, start, end)
+        return np.array(signals)
+
+    def length(self, chr_name):
+        with pbw.open(self.path) as bw_file:
+            length = bw_file.chroms(chr_name)
+        return length
 
 class SequenceFeature(Feature):
 

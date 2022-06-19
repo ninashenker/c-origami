@@ -1,0 +1,6 @@
+# H3K27ac log2foldchange configuration file
+
+h3k27ac_log2fc:
+    file_name: 'h3k27ac_log2fc.bw'
+    norm: null
+

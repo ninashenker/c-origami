@@ -1,0 +1,38 @@
+# Default config file
+
+defaults:
+    - dataset: default
+    - model: ConvModel
+    - _self_
+
+run:
+    name: 'c-origami'
+    save_path: &run_dir /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/src/training/runs/${run.name}/${now:%Y-%m-%d}/${now:%H-%M-%S-%f}
+    mode: 'train'
+    debug: FALSE
+    seed: 2077
+
+hydra:
+    run:
+        dir: *run_dir
+
+logger:
+    wandb:
+        project: 'C-Origami'
+
+optim:
+    lr: 1e-3
+    weight_decay: 0
+
+dataloader:
+    batch_size: 8
+    ddp_enabled: TRUE
+    num_gpu: 4
+    num_workers: 12
+    pin_memory: TRUE
+    prefetch_factor: 4
+
+trainer:
+    max_epochs: 200
+    patience: 40
+    save_top_n: 20
