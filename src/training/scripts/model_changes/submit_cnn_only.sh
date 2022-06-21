@@ -1,13 +1,13 @@
 #!/bin/bash
-#BSUB -J C.Origami
+#BSUB -J conv_only_C.Origami
 #SBATCH -c24
 #SBATCH -p gpu4_medium,gpu4_long,gpu8_medium,gpu8_long
 #SBATCH --gres=gpu:4
 #SBATCH --mem=100gb # Job memory request
 #SBATCH --time=2-00:00:00 # Time limit hrs:min:sec
-#SBATCH --output=/gpfs/scratch/jt3545/logs/corigami_%j.log # Standard output and error log
+#SBATCH --output=/gpfs/scratch/jt3545/logs/corigami_conv_only_%j.log # Standard output and error log
 
 source ~/.bashrc
 conda activate /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/conda/corigami
 
-python main.py 
+python main.py run.name="c-origami-conv-only" model="ConvModel"

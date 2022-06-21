@@ -28,6 +28,9 @@ def init_training(args):
                                         save_top_k=args.trainer.save_top_n, 
                                         monitor='val_loss')
 
+    # LR monitor
+    lr_monitor = callbacks.LearningRateMonitor(logging_interval='epoch')
+
     # Logger
     csv_logger = pl.loggers.CSVLogger(save_dir = f'{args.run.save_path}/csv')
     wandb_logger = pl.loggers.WandbLogger(name = args.run.name, project=args.logger.wandb.project, save_dir = args.run.save_path)
@@ -39,7 +42,8 @@ def init_training(args):
     pl_trainer = pl.Trainer(accelerator="gpu", devices=1,
                             logger = [csv_logger, wandb_logger],
                             callbacks = [early_stop_callback,
-                                         checkpoint_callback],
+                                         checkpoint_callback,
+                                         lr_monitor],
                             max_epochs = args.trainer.max_epochs
                             )
     '''
@@ -47,7 +51,8 @@ def init_training(args):
                             accelerator="gpu", devices=4,
                             logger = [csv_logger, wandb_logger],
                             callbacks = [early_stop_callback,
-                                         checkpoint_callback],
+                                         checkpoint_callback,
+                                         lr_monitor],
                             max_epochs = args.trainer.max_epochs
                             )
     trainloader = pl_module.get_dataloader(args, 'train')
@@ -82,7 +87,8 @@ class TrainModule(pl.LightningModule):
             out_img = self.proc_image(outputs)
             mat_img = self.proc_image(mat)
             #img = np.concatenate([out_img, mat_img], axis = 1)
-            self.logger[1].log_image(key = f'train_pred_vs_target_{self.current_epoch}_{batch_idx}', 
+            #self.logger[1].log_image(key = f'train_pred_vs_target_{self.current_epoch}_{batch_idx}', 
+            self.logger[1].log_image(key = f'train_pred_vs_target_{batch_idx}', 
                                      images = [out_img, mat_img], 
                                      caption=['Prediction', 'Target'])
         return loss
@@ -108,7 +114,8 @@ class TrainModule(pl.LightningModule):
             out_img = self.proc_image(outputs)
             mat_img = self.proc_image(mat)
             #img = np.concatenate([out_img, mat_img], axis = 1)
-            self.logger[1].log_image(key = f'val_pred_vs_target_{self.current_epoch}_{batch_idx}',
+            #self.logger[1].log_image(key = f'val_pred_vs_target_{self.current_epoch}_{batch_idx}',
+            self.logger[1].log_image(key = f'val_pred_vs_target_{batch_idx}',
                                      images = [out_img, mat_img], 
                                      caption=['Prediction', 'Target'])
         return loss
@@ -149,7 +156,18 @@ class TrainModule(pl.LightningModule):
         optimizer = torch.optim.Adam(self.parameters(), 
                                      lr = self.args.optim.lr,
                                      weight_decay = self.args.optim.weight_decay)
-        return optimizer
+
+        import pl_bolts
+        scheduler = pl_bolts.optimizers.lr_scheduler.LinearWarmupCosineAnnealingLR(optimizer, warmup_epochs=5, max_epochs=200)
+        scheduler_config = {
+            'scheduler': scheduler,
+            'interval': 'epoch',
+            'frequency': 1,
+            'monitor': 'val_loss',
+            'strict': True,
+            'name': 'WarmupCosineAnnealing',
+        }
+        return {'optimizer' : optimizer, 'lr_scheduler' : scheduler_config}
 
     def get_dataset(self, args, mode):
 
@@ -164,9 +182,8 @@ class TrainModule(pl.LightningModule):
 
         # Record length for printing validation image
         if mode == 'val':
-            self.val_length = len(dataset)
-        else:
-            self.val_length = 0
+            self.val_length = len(dataset) / args.dataloader.batch_size
+            print('Validation loader length:', self.val_length)
 
         return dataset
 
@@ -174,7 +191,7 @@ class TrainModule(pl.LightningModule):
         dataset = self.get_dataset(args, mode)
 
         if args.run.debug:
-            size = 40
+            size = 200
             dataset = torch.utils.data.Subset(dataset, range(size))
 
         if mode == 'train':

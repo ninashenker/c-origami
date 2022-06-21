@@ -2,7 +2,12 @@ import torch
 import torch.nn as nn
 import numpy as np
 
-#from transformers import BertModel, BertConfig
+def main():
+    attn = AttnModule()
+    dila = DilatedModule()
+    input_arr = torch.rand(8, 256, 128)
+    input_arr_cnn = torch.rand(8, 128, 256)
+    import pdb; pdb.set_trace()
 
 class ConvBlock(nn.Module):
     def __init__(self, size, stride = 2, hidden_in = 64, hidden = 64):
@@ -137,22 +142,94 @@ class Decoder(nn.Module):
         res_blocks = nn.Sequential(*blocks)
         return res_blocks
 
+class ResBlockDilated1D(nn.Module):
+    def __init__(self, size, hidden = 64, stride = 1, dil = 2):
+        super(ResBlockDilated1D, self).__init__()
+        pad_len = dil 
+        self.res = nn.Sequential(
+                        nn.Conv1d(hidden, hidden, size, padding = pad_len, 
+                            dilation = dil),
+                        nn.BatchNorm1d(hidden),
+                        nn.ReLU(),
+                        nn.Conv1d(hidden, hidden, size, padding = pad_len,
+                            dilation = dil),
+                        nn.BatchNorm1d(hidden),
+                        )
+        self.relu = nn.ReLU()
+
+    def forward(self, x):
+        identity = x 
+        res_out = self.res(x)
+        out = self.relu(res_out + identity)
+        return out
+
+class DilatedModule(nn.Module):
+    def __init__(self, hidden = 128, layers = 8, filter_size = 3):
+        super(DilatedModule, self).__init__()
+        self.filter_size = filter_size
+        self.module = self.get_res_blocks(layers, hidden)
+
+    def get_res_blocks(self, n, hidden):
+        blocks = []
+        for i in range(n):
+            dilation = 2 ** (i + 1)
+            blocks.append(ResBlockDilated1D(self.filter_size, hidden = hidden, dil = dilation))
+        res_blocks = nn.Sequential(*blocks)
+        return res_blocks
+
+    def forward(self, x):
+        output = self.module(x)
+        return output
+
+class TransformerLayer(torch.nn.TransformerEncoderLayer):
+    
+    def forward(self, src, src_mask = None, src_key_padding_mask = None):
+        src2 = self.self_attn(src, src, src, attn_mask=src_mask,
+                              key_padding_mask=src_key_padding_mask)[0]
+        src = src + self.norm1(self.dropout1(src2))
+        src2 = self.linear2(self.dropout(self.activation(self.linear1(src))))
+        src = self.norm2(src + self.dropout2(src2))
+        return src
+
 class AttnModule(nn.Module):
     def __init__(self, hidden = 128, layers = 8):
         super(AttnModule, self).__init__()
-        config = BertConfig(hidden_size = hidden,
-                            num_hidden_layers = layers,
-                            num_attention_heads = 8,
-                            hidden_act = 'relu',
-                            position_embedding_type = 'relative_key_query',
-                            max_position_embeddings = 256)
-        bert_model = BertModel(config)
-        self.module = bert_model.encoder
+
+        self.pos_encoder = PositionalEncoding(hidden, dropout = 0.1)
+        encoder_layers = TransformerLayer(hidden, 
+                                          nhead = 8,
+                                          dim_feedforward = hidden, 
+                                          dropout = 0.1)
+        self.module = torch.nn.TransformerEncoder(encoder_layers, layers)
 
     def forward(self, x):
-        res = self.module(x).last_hidden_state
-        out = res + x
-        return out
+        x = self.pos_encoder(x)
+        output = self.module(x)
+        #out = res + x
+        return output
 
     def inference(self, x):
         return self.module(x)
+
+class PositionalEncoding(nn.Module):
+
+    def __init__(self, hidden, dropout = 0.1, max_len = 256):
+        super().__init__()
+        self.dropout = nn.Dropout(p=dropout)
+        position = torch.arange(max_len).unsqueeze(1)
+        div_term = torch.exp(torch.arange(0, hidden, 2) * (-np.log(10000.0) / hidden))
+        pe = torch.zeros(max_len, 1, hidden)
+        pe[:, 0, 0::2] = torch.sin(position * div_term)
+        pe[:, 0, 1::2] = torch.cos(position * div_term)
+        self.register_buffer('pe', pe)
+
+    def forward(self, x):
+        """
+        Args:
+            x: Tensor, shape [seq_len, batch_size, embedding_dim]
+        """
+        x = x + self.pe[:x.size(0)]
+        return self.dropout(x)
+
+if __name__ == '__main__':
+    main()
