@@ -66,7 +66,7 @@ class ConvTransModel(ConvModel):
 class ConvDilatedModel(ConvModel):
     
     def __init__(self, num_genomic_features):
-        super(ConvTransModel, self).__init__(num_genomic_features)
+        super(ConvDilatedModel, self).__init__(num_genomic_features)
         self.encoder = blocks.EncoderSplit(num_genomic_features, output_size = 256, num_blocks = 12)
         self.dila_blocks = blocks.DilatedModule(hidden = 256)
         self.decoder = blocks.Decoder(512)

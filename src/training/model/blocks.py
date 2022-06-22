@@ -143,17 +143,19 @@ class Decoder(nn.Module):
         return res_blocks
 
 class ResBlockDilated1D(nn.Module):
-    def __init__(self, size, hidden = 64, stride = 1, dil = 2):
+    def __init__(self, size, hidden = 64, stride = 1, dil = 2, dropout_p = 0.1):
         super(ResBlockDilated1D, self).__init__()
         pad_len = dil 
         self.res = nn.Sequential(
                         nn.Conv1d(hidden, hidden, size, padding = pad_len, 
                             dilation = dil),
-                        nn.BatchNorm1d(hidden),
+                        nn.Dropout(dropout_p),
+                        #nn.BatchNorm1d(hidden),
                         nn.ReLU(),
                         nn.Conv1d(hidden, hidden, size, padding = pad_len,
                             dilation = dil),
-                        nn.BatchNorm1d(hidden),
+                        #nn.BatchNorm1d(hidden),
+                        nn.Dropout(dropout_p),
                         )
         self.relu = nn.ReLU()
 
@@ -188,7 +190,7 @@ class TransformerLayer(torch.nn.TransformerEncoderLayer):
                               key_padding_mask=src_key_padding_mask)[0]
         src = src + self.norm1(self.dropout1(src2))
         src2 = self.linear2(self.dropout(self.activation(self.linear1(src))))
-        src = self.norm2(src + self.dropout2(src2))
+        src = src + self.norm2(self.dropout2(src2))
         return src
 
 class AttnModule(nn.Module):
