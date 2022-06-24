@@ -195,12 +195,12 @@ class TransformerLayer(torch.nn.TransformerEncoderLayer):
         src_side, attn_weights = self.self_attn(src_norm, src_norm, src_norm, 
                                     attn_mask=src_mask,
                                     key_padding_mask=src_key_padding_mask)
-        src += self.dropout1(src_side)
+        src = src + self.dropout1(src_side)
 
         # MLP section
         src_norm = self.norm2(src)
         src_side = self.linear2(self.dropout(self.activation(self.linear1(src_norm))))
-        src += self.dropout2(src_side)
+        src = src + self.dropout2(src_side)
         return src, attn_weights
 
 class TransformerEncoder(torch.nn.TransformerEncoder):
@@ -229,7 +229,7 @@ class TransformerEncoder(torch.nn.TransformerEncoder):
 
         for mod in self.layers:
             output, attn_weights = mod(output, src_mask=mask, src_key_padding_mask=src_key_padding_mask)
-            attn_weight_list.append(attn_weights.unsqueeze(0))
+            attn_weight_list.append(attn_weights.unsqueeze(0).detach())
         if self.norm is not None:
             output = self.norm(output)
 

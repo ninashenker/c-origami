@@ -11,6 +11,8 @@ from omegaconf import DictConfig, OmegaConf
 import model.corigami_models as corigami_models
 from data import genome_dataset
 
+torch.autograd.set_detect_anomaly(True)
+
 @hydra.main(config_path="config", config_name="default")
 def main(args : DictConfig) -> None:
     init_training(args)
