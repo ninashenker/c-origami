@@ -1,12 +1,15 @@
 import torch
 import torch.nn as nn
 import numpy as np
+import copy
 
 def main():
     attn = AttnModule()
+    attn.module.record_attn = True
     dila = DilatedModule()
     input_arr = torch.rand(8, 256, 128)
     input_arr_cnn = torch.rand(8, 128, 256)
+    output = attn(input_arr)
     import pdb; pdb.set_trace()
 
 class ConvBlock(nn.Module):
@@ -184,25 +187,72 @@ class DilatedModule(nn.Module):
         return output
 
 class TransformerLayer(torch.nn.TransformerEncoderLayer):
+    # Pre-LN structure
     
     def forward(self, src, src_mask = None, src_key_padding_mask = None):
-        src2 = self.self_attn(src, src, src, attn_mask=src_mask,
-                              key_padding_mask=src_key_padding_mask)[0]
-        src = src + self.norm1(self.dropout1(src2))
-        src2 = self.linear2(self.dropout(self.activation(self.linear1(src))))
-        src = src + self.norm2(self.dropout2(src2))
-        return src
+        # MHA section
+        src_norm = self.norm1(src)
+        src_side, attn_weights = self.self_attn(src_norm, src_norm, src_norm, 
+                                    attn_mask=src_mask,
+                                    key_padding_mask=src_key_padding_mask)
+        src += self.dropout1(src_side)
+
+        # MLP section
+        src_norm = self.norm2(src)
+        src_side = self.linear2(self.dropout(self.activation(self.linear1(src_norm))))
+        src += self.dropout2(src_side)
+        return src, attn_weights
+
+class TransformerEncoder(torch.nn.TransformerEncoder):
+
+    def __init__(self, encoder_layer, num_layers, norm=None, record_attn = False):
+        super(TransformerEncoder, self).__init__(encoder_layer, num_layers)
+        self.layers = self._get_clones(encoder_layer, num_layers)
+        self.num_layers = num_layers
+        self.norm = norm
+        self.record_attn = record_attn
+
+    def forward(self, src, mask = None, src_key_padding_mask = None):
+        r"""Pass the input through the encoder layers in turn.
+
+        Args:
+            src: the sequence to the encoder (required).
+            mask: the mask for the src sequence (optional).
+            src_key_padding_mask: the mask for the src keys per batch (optional).
+
+        Shape:
+            see the docs in Transformer class.
+        """
+        output = src
+
+        attn_weight_list = []
+
+        for mod in self.layers:
+            output, attn_weights = mod(output, src_mask=mask, src_key_padding_mask=src_key_padding_mask)
+            attn_weight_list.append(attn_weights.unsqueeze(0))
+        if self.norm is not None:
+            output = self.norm(output)
+
+        if self.record_attn:
+            return output, torch.cat(attn_weight_list)
+        else:
+            return output
+
+    def _get_clones(self, module, N):
+        return torch.nn.modules.ModuleList([copy.deepcopy(module) for i in range(N)])
 
 class AttnModule(nn.Module):
-    def __init__(self, hidden = 128, layers = 8):
+    def __init__(self, hidden = 128, layers = 8, record_attn = False, inpu_dim = 256):
         super(AttnModule, self).__init__()
 
         self.pos_encoder = PositionalEncoding(hidden, dropout = 0.1)
         encoder_layers = TransformerLayer(hidden, 
                                           nhead = 8,
-                                          dim_feedforward = hidden, 
-                                          dropout = 0.1)
-        self.module = torch.nn.TransformerEncoder(encoder_layers, layers)
+                                          dropout = 0.1,
+                                          batch_first = True)
+        self.module = TransformerEncoder(encoder_layers, 
+                                         layers, 
+                                         record_attn = record_attn)
 
     def forward(self, x):
         x = self.pos_encoder(x)
@@ -231,6 +281,7 @@ class PositionalEncoding(nn.Module):
             x: Tensor, shape [seq_len, batch_size, embedding_dim]
         """
         x = x + self.pe[:x.size(0)]
+        #import pdb; pdb.set_trace()
         return self.dropout(x)
 
 if __name__ == '__main__':

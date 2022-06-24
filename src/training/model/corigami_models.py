@@ -4,16 +4,17 @@ import torch.nn as nn
 import model.blocks as blocks
 
 def main():
-    model = ConvModel(2).cuda()
-    inputs = torch.rand(4, 2097152, 5).cuda()
-    output = model(inputs)
+    model = ConvTransModel(2, mid_hidden = 256, record_attn = True)#.cuda()
+    inputs = torch.rand(2, 2097152, 7)#.cuda()
+    output, attn_map = model(inputs)
     print(output.shape, output.mean(), output.var())
+    import pdb; pdb.set_trace()
 
 class ConvModel(nn.Module):
-    def __init__(self, num_genomic_features):
+    def __init__(self, num_genomic_features, mid_hidden = 256):
         super(ConvModel, self).__init__()
-        self.encoder = blocks.EncoderSplit(num_genomic_features, output_size = 256, num_blocks = 12)
-        self.decoder = blocks.Decoder(512)
+        self.encoder = blocks.EncoderSplit(num_genomic_features, output_size = mid_hidden, num_blocks = 12)
+        self.decoder = blocks.Decoder(mid_hidden * 2)
 
     def forward(self, x):
         '''
@@ -43,11 +44,12 @@ class ConvModel(nn.Module):
 
 class ConvTransModel(ConvModel):
     
-    def __init__(self, num_genomic_features):
+    def __init__(self, num_genomic_features, mid_hidden = 256, record_attn = False):
         super(ConvTransModel, self).__init__(num_genomic_features)
-        self.encoder = blocks.EncoderSplit(num_genomic_features, output_size = 256, num_blocks = 12)
-        self.attn = blocks.AttnModule(hidden = 256)
-        self.decoder = blocks.Decoder(512)
+        self.encoder = blocks.EncoderSplit(num_genomic_features, output_size = mid_hidden, num_blocks = 12)
+        self.attn = blocks.AttnModule(hidden = mid_hidden, record_attn = record_attn)
+        self.decoder = blocks.Decoder(mid_hidden * 2)
+        self.record_attn = record_attn
     
     def forward(self, x):
         '''
@@ -57,19 +59,25 @@ class ConvTransModel(ConvModel):
         x = self.move_feature_forward(x).float()
         x = self.encoder(x)
         x = self.move_feature_forward(x)
-        x = self.attn(x)
+        if self.record_attn:
+            x, attn_weights = self.attn(x)
+        else:
+            x = self.attn(x)
         x = self.move_feature_forward(x)
         x = self.diagonalize(x)
         x = self.decoder(x).squeeze(1)
-        return x
+        if self.record_attn:
+            return x, attn_weights
+        else:
+            return x
 
 class ConvDilatedModel(ConvModel):
     
-    def __init__(self, num_genomic_features):
+    def __init__(self, num_genomic_features, mid_hidden = 256):
         super(ConvDilatedModel, self).__init__(num_genomic_features)
-        self.encoder = blocks.EncoderSplit(num_genomic_features, output_size = 256, num_blocks = 12)
-        self.dila_blocks = blocks.DilatedModule(hidden = 256)
-        self.decoder = blocks.Decoder(512)
+        self.encoder = blocks.EncoderSplit(num_genomic_features, output_size = mid_hidden, num_blocks = 12)
+        self.dila_blocks = blocks.DilatedModule(hidden = mid_hidden)
+        self.decoder = blocks.Decoder(mid_hidden * 2)
     
     def forward(self, x):
         '''

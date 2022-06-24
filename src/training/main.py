@@ -8,7 +8,7 @@ import pytorch_lightning.callbacks as callbacks
 
 from omegaconf import DictConfig, OmegaConf
 
-import model.model as corigami_models
+import model.corigami_models as corigami_models
 from data import genome_dataset
 
 @hydra.main(config_path="config", config_name="default")
@@ -172,7 +172,8 @@ class TrainModule(pl.LightningModule):
     def get_dataset(self, args, mode):
 
         if args.run.debug: # Small test set
-            mode = 'val'
+            if mode == 'train':
+                mode = 'test'
 
 
         celltype_root = f'{args.dataset.data_root}/{args.dataset.assembly}/{args.dataset.celltype}'
@@ -191,7 +192,7 @@ class TrainModule(pl.LightningModule):
         dataset = self.get_dataset(args, mode)
 
         if args.run.debug:
-            size = 200
+            size = 150
             dataset = torch.utils.data.Subset(dataset, range(size))
 
         if mode == 'train':
@@ -221,7 +222,7 @@ class TrainModule(pl.LightningModule):
         model_name =  args.model.model_type
         num_genomic_features = len(args.dataset.genomic_features)
         ModelClass = getattr(corigami_models, model_name)
-        model = ModelClass(num_genomic_features)
+        model = ModelClass(num_genomic_features, mid_hidden = args.model.mid_hidden)
         return model
 
 if __name__ == '__main__':
