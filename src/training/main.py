@@ -50,7 +50,7 @@ def init_training(args):
                             )
     '''
     pl_trainer = pl.Trainer(strategy='ddp',
-                            accelerator="gpu", devices=4,
+                            accelerator="gpu", devices=args.trainer.num_gpu,
                             logger = [csv_logger, wandb_logger],
                             callbacks = [early_stop_callback,
                                          checkpoint_callback,
@@ -134,6 +134,7 @@ class TrainModule(pl.LightningModule):
         fig.canvas.draw()
         data = np.frombuffer(fig.canvas.tostring_rgb(), dtype=np.uint8)
         data = data.reshape(fig.canvas.get_width_height()[::-1] + (3,))
+        plt.close()
         return data
         
     # Collect epoch statistics
