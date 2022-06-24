@@ -160,7 +160,7 @@ class TrainModule(pl.LightningModule):
                                      weight_decay = self.args.optim.weight_decay)
 
         import pl_bolts
-        scheduler = pl_bolts.optimizers.lr_scheduler.LinearWarmupCosineAnnealingLR(optimizer, warmup_epochs=5, max_epochs=200)
+        scheduler = pl_bolts.optimizers.lr_scheduler.LinearWarmupCosineAnnealingLR(optimizer, warmup_epochs=self.args.optim.warmup_epoches, max_epochs=200)
         scheduler_config = {
             'scheduler': scheduler,
             'interval': 'epoch',

@@ -23,6 +23,7 @@ logger:
 optim:
     lr: 1e-3
     weight_decay: 0
+    warmup_epoches: 10
 
 dataloader:
     batch_size: 8
