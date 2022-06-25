@@ -1,0 +1,5 @@
+# transformer with smaller learning rate config file
+
+lr: 2e-4
+weight_decay: 0
+warmup_epoches: 10

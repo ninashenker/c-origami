@@ -1,9 +1,10 @@
 # Default config file
 
 defaults:
+    - _self_
     - dataset: default
     - model: ConvTransModel
-    - _self_
+    - optim: transformer_optim
 
 run:
     name: 'c-origami'
@@ -20,11 +21,6 @@ hydra:
 logger:
     wandb:
         project: 'C-Origami'
-
-optim:
-    lr: 1e-3
-    weight_decay: 0
-    warmup_epoches: 10
 
 dataloader:
     batch_size: 8

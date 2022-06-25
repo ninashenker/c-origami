@@ -51,6 +51,7 @@ def init_training(args):
     '''
     pl_trainer = pl.Trainer(strategy='ddp',
                             accelerator="gpu", devices=args.trainer.num_gpu,
+                            gradient_clip_val=1,
                             logger = [csv_logger, wandb_logger],
                             callbacks = [early_stop_callback,
                                          checkpoint_callback,

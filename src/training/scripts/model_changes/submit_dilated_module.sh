@@ -10,4 +10,4 @@
 source ~/.bashrc
 conda activate /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/conda/corigami
 
-python main.py run.name="c-origami-dilated" model="ConvDilatedModel"
+python main.py run.name="c-origami-dilated" model="ConvDilatedModel" optim="cnn_optim" 

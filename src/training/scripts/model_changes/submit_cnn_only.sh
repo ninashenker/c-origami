@@ -10,4 +10,4 @@
 source ~/.bashrc
 conda activate /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/conda/corigami
 
-python main.py run.name="c-origami-conv-only" model="ConvModel"
+python main.py run.name="c-origami-conv-only" model="ConvModel" optim="cnn_optim"
