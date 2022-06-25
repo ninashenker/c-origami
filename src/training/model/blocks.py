@@ -249,6 +249,7 @@ class AttnModule(nn.Module):
         encoder_layers = TransformerLayer(hidden, 
                                           nhead = 8,
                                           dropout = 0.1,
+                                          dim_feedforward = 512,
                                           batch_first = True)
         self.module = TransformerEncoder(encoder_layers, 
                                          layers, 
