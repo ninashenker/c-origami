@@ -19,6 +19,14 @@ def main(args : DictConfig) -> None:
 
 def init_training(args):
 
+    # Offline training
+
+    if args.logger.wandb.mode == 'offline':
+        print('*** wandb in offline mode ***')
+        import os
+        os.environ['WANDB_API_KEY'] = '31fe33f9ef10439c938a7020b946312e92f50dbc'
+        os.environ['WANDB_MODE'] = 'offline'
+
     # Early_stopping
     early_stop_callback = callbacks.EarlyStopping(monitor='val_loss', 
                                         min_delta=0.00, 
@@ -36,6 +44,10 @@ def init_training(args):
     # Logger
     csv_logger = pl.loggers.CSVLogger(save_dir = f'{args.run.save_path}/csv')
     wandb_logger = pl.loggers.WandbLogger(name = args.run.name, project=args.logger.wandb.project, save_dir = args.run.save_path)
+    if args.logger.wandb.mode == 'off':
+        all_loggers = csv_logger
+    else:
+        all_loggers = [csv_logger, wandb_logger]
     
     # Assign seed
     pl.seed_everything(args.run.seed, workers=True)
@@ -52,7 +64,7 @@ def init_training(args):
     pl_trainer = pl.Trainer(strategy='ddp',
                             accelerator="gpu", devices=args.trainer.num_gpu,
                             gradient_clip_val=1,
-                            logger = [csv_logger, wandb_logger],
+                            logger = all_loggers,
                             callbacks = [early_stop_callback,
                                          checkpoint_callback,
                                          lr_monitor],
@@ -90,10 +102,11 @@ class TrainModule(pl.LightningModule):
             out_img = self.proc_image(outputs)
             mat_img = self.proc_image(mat)
             #img = np.concatenate([out_img, mat_img], axis = 1)
-            #self.logger[1].log_image(key = f'train_pred_vs_target_{self.current_epoch}_{batch_idx}', 
-            self.logger[1].log_image(key = f'train_pred_vs_target_{batch_idx}', 
-                                     images = [out_img, mat_img], 
-                                     caption=['Prediction', 'Target'])
+            if self.args.logger.wandb.mode != 'off':
+                #self.logger[1].log_image(key = f'train_pred_vs_target_{self.current_epoch}_{batch_idx}', 
+                self.logger[1].log_image(key = f'train_pred_vs_target_{batch_idx}', 
+                                        images = [out_img, mat_img], 
+                                        caption=['Prediction', 'Target'])
         return loss
 
     def validation_step(self, batch, batch_idx):
@@ -117,10 +130,11 @@ class TrainModule(pl.LightningModule):
             out_img = self.proc_image(outputs)
             mat_img = self.proc_image(mat)
             #img = np.concatenate([out_img, mat_img], axis = 1)
-            #self.logger[1].log_image(key = f'val_pred_vs_target_{self.current_epoch}_{batch_idx}',
-            self.logger[1].log_image(key = f'val_pred_vs_target_{batch_idx}',
-                                     images = [out_img, mat_img], 
-                                     caption=['Prediction', 'Target'])
+            if self.args.logger.wandb.mode != 'off':
+                #self.logger[1].log_image(key = f'val_pred_vs_target_{self.current_epoch}_{batch_idx}',
+                self.logger[1].log_image(key = f'val_pred_vs_target_{batch_idx}',
+                                        images = [out_img, mat_img], 
+                                        caption=['Prediction', 'Target'])
         return loss
 
     def proc_image(self, image):

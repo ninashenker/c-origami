@@ -13,6 +13,7 @@ def main():
 class ConvModel(nn.Module):
     def __init__(self, num_genomic_features, mid_hidden = 256):
         super(ConvModel, self).__init__()
+        print('Initializing ConvModel')
         self.encoder = blocks.EncoderSplit(num_genomic_features, output_size = mid_hidden, num_blocks = 12)
         self.decoder = blocks.Decoder(mid_hidden * 2)
 
@@ -46,6 +47,7 @@ class ConvTransModel(ConvModel):
     
     def __init__(self, num_genomic_features, mid_hidden = 256, record_attn = False):
         super(ConvTransModel, self).__init__(num_genomic_features)
+        print('Initializing ConvTransModel')
         self.encoder = blocks.EncoderSplit(num_genomic_features, output_size = mid_hidden, num_blocks = 12)
         self.attn = blocks.AttnModule(hidden = mid_hidden, record_attn = record_attn)
         self.decoder = blocks.Decoder(mid_hidden * 2)
@@ -71,10 +73,21 @@ class ConvTransModel(ConvModel):
         else:
             return x
 
+class ConvSkipTransModel(ConvTransModel):
+
+    def __init__(self, num_genomic_features, mid_hidden = 256, record_attn = False):
+        super(ConvSkipTransModel, self).__init__(num_genomic_features)
+        print('Initializing ConvSkipTransModel')
+        self.encoder = blocks.EncoderSplit(num_genomic_features, output_size = mid_hidden, num_blocks = 12)
+        self.attn = blocks.AttnSkipModule(hidden = mid_hidden, record_attn = record_attn)
+        self.decoder = blocks.Decoder(mid_hidden * 2)
+        self.record_attn = record_attn
+
 class ConvDilatedModel(ConvModel):
     
     def __init__(self, num_genomic_features, mid_hidden = 256):
         super(ConvDilatedModel, self).__init__(num_genomic_features)
+        print('Initializing ConvDilatedModel')
         self.encoder = blocks.EncoderSplit(num_genomic_features, output_size = mid_hidden, num_blocks = 12)
         self.dila_blocks = blocks.DilatedModule(hidden = mid_hidden)
         self.decoder = blocks.Decoder(mid_hidden * 2)

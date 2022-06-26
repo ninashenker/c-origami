@@ -245,6 +245,7 @@ class AttnModule(nn.Module):
     def __init__(self, hidden = 128, layers = 8, record_attn = False, inpu_dim = 256):
         super(AttnModule, self).__init__()
 
+        self.record_attn = record_attn
         self.pos_encoder = PositionalEncoding(hidden, dropout = 0.1)
         encoder_layers = TransformerLayer(hidden, 
                                           nhead = 8,
@@ -263,6 +264,20 @@ class AttnModule(nn.Module):
 
     def inference(self, x):
         return self.module(x)
+
+class AttnSkipModule(AttnModule):
+
+    def forward(self, x):
+        skip = x
+        src = self.pos_encoder(x)
+        if self.record_attn:
+            src, attn = self.module(src)
+            output = src + skip
+            return output, attn
+        else:
+            src = self.module(src)
+            output = src + skip
+            return output
 
 class PositionalEncoding(nn.Module):
 
