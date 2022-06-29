@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 import importlib
 import json
 import pyBigWig as pbw
+from matplotlib.colors import LinearSegmentedColormap
 
 from model_class import ModelTemplate
 from pineapple.model import CNN_dual_encoder
@@ -113,17 +114,28 @@ def get_data(chr_num, start, chr_fa_path, ctcf_path, atac_path, window = 2097152
 
     return seq, ctcf, atac
 
+#Visualize prediction
+def plot_mat(name, image, chr_num, chr_start):
+    color_map = LinearSegmentedColormap.from_list("bright_red",
+                                                [(1,1,1),(1,0,0)])
+    fig, ax = plt.subplots()
+    ax.imshow(image, cmap = color_map, vmin = 0, vmax = 5)
+    ax.set_axis_off()
+    #hic_chart = handle.pyplot(fig)
+    if not os.path.isdir("prediction_matrix_output"):
+      os.makedirs("prediction_matrix_output")
+    plt.savefig(f'prediction_matrix_output/{name}_{chr_num}_{chr_start}.png')
+
 @hydra.main(version_base=None, config_path=".", config_name="config")
 def inference(cfg):
   print(OmegaConf.to_yaml(cfg))
-  print(cfg.inference.task)
 
   #Model Selection
   model = get_model(cfg.inference.model_path)
 
   #Ensure start position is before chromosome length.
   start_pos = cfg.inference.start_pos
-  lengths_by_chr = locus_config(cfg.inference.chr_lengths)
+  lengths_by_chr = locus_config(os.path.join(cfg.inference.chr_fa_path, cfg.inference.chr_lengths))
   chr_length = lengths_by_chr[str(cfg.inference.chr_num)]
   assert start_pos < chr_length, f"{start_pos} must be less than {chr_length}"
 
@@ -138,6 +150,8 @@ def inference(cfg):
   )
 
   pred = model.predict(seq, ctcf, atac)
+  cell_header = cfg.inference.cell_line
+  plot_mat(cell_header, pred, chr_name, start_pos)
 
 if __name__ == "__main__":
   inference()

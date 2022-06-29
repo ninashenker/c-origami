@@ -3,8 +3,9 @@ inference:
   input_folder: /gpfs/data/abl/home/shenkn01/hic_prediction/evaluation/data/mouse/Patski/processed_data
   ctcf_name: peaks.bigwig
   atac_name: 4DNFINU4WSEY.bw
-  chr_lengths: /gpfs/data/abl/home/shenkn01/hic_prediction/evaluation/data/mouse/Patski/raw_data/chr_length.json
+  chr_lengths: chr_length.json
   chr_fa_path: /gpfs/data/abl/home/shenkn01/hic_prediction/evaluation/data/mouse/Patski/raw_data
-  chr_num: 1
-  start_pos: 10
+  cell_line: Patski
+  chr_num: 12
+  start_pos: 75000000
   task: predict

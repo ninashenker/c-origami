@@ -1,10 +1,8 @@
 # c-origami
 
 [![LICENSE](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/ninashenker/c-origami/blob/main/LICENSE)
-[![Build and Test]()]()
 
-[Website](https://www.corigami.org/) |
-[Dataset](link) |
+[Models](#Download-model-and-other-relevant-resource-files) |
 [GitHub](https://github.com/ninashenker/c-origami) |
 [Publications](#list-of-papers)
 
@@ -54,10 +52,34 @@ navigate to the `c-origami` root directory and run
 ```bash
 pip install -e .
 ```
+## Download model and other relevant resource files
 
-## Training a model
+Next, download the model and other files needed for running C.Origami. Since the files are large and optional, you can download what you need. It is recommended you download the model needed along with the hg38 or mm10 reference genome. 
+You may also download the preprocessed CTCF/ATAC data or use your own fastq files. 
+
+For human genome:
+```bash
+wget -O human_model.pt https://www.dropbox.com/s/jkx1jxjyoumq6e8/hg38_state_dict_43.pt?dl=0
+
+```
+For mouse genome:
+```bash
+wget -O mouse_model.pt https://www.dropbox.com/s/9lmu1lc3an8whp4/mm10_state_dict_73.pt?dl=0
+
+```
+
+# Training
+
+## Training your own  model
+
+# Inference
+
+For any inference application, download one of our pre-trained models or use your own model.
 
 ## Prediction
+
+C.Origami can perform de novo prediction of cell type-specific chromatin architecture using both DNA sequence features and cell type-specific genomic information.
+
 
 ## Editing/Perturbation
 
