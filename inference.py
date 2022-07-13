@@ -47,6 +47,17 @@ class CustomModel(ModelTemplate):
       outputs = self.model(inputs).squeeze(0)
       return outputs.detach().cpu().numpy()
 
+  def perturbation(self, seq, ctcf, atac, del_pos, window, start_pos):
+    for pos in del_pos:
+        start = pos['start'] - start_pos
+        end = pos['end'] - start_pos
+        seq[start:end] = 4
+        ctcf[start:end] = 0
+        atac[start:end] = 0
+    len_diff = window - len(seq)
+    if len_diff < 0:
+        raise Exception('Deletion range should be smaller than sequence length (2 mb)')
+    return seq, ctcf, atac
 
 def locus_config(lengths_dir):
   with open(lengths_dir, 'r') as len_file:
@@ -112,10 +123,10 @@ def get_data(chr_num, start, chr_fa_path, ctcf_path, atac_path, window = 2097152
     with pbw.open(atac_path) as atac_f:
       atac = bw_to_np(atac_f, chr_num, start, end)
 
-    return seq, ctcf, atac
+    return seq, ctcf, atac, window
 
 #Visualize prediction
-def plot_mat(name, image, chr_num, chr_start):
+def plot_mat(name, image, chr_num, chr_start, task, del_pos=None):
     color_map = LinearSegmentedColormap.from_list("bright_red",
                                                 [(1,1,1),(1,0,0)])
     fig, ax = plt.subplots()
@@ -124,12 +135,15 @@ def plot_mat(name, image, chr_num, chr_start):
     #hic_chart = handle.pyplot(fig)
     if not os.path.isdir("prediction_matrix_output"):
       os.makedirs("prediction_matrix_output")
-    plt.savefig(f'prediction_matrix_output/{name}_{chr_num}_{chr_start}.png')
+
+    name = f"{task}_{name}_{chr_num}_{chr_start}"
+    name = name + f"_{del_pos}" if del_pos is not None else name
+    plt.savefig(f'prediction_matrix_output/{name}.png')
 
 @hydra.main(version_base=None, config_path=".", config_name="config")
 def inference(cfg):
   print(OmegaConf.to_yaml(cfg))
-
+  print(cfg.inference.del_pos)
   #Model Selection
   model = get_model(cfg.inference.model_path)
 
@@ -141,7 +155,7 @@ def inference(cfg):
 
   #Get data.
   chr_name = f"chr{cfg.inference.chr_num}"
-  seq, ctcf, atac = get_data(
+  seq, ctcf, atac, window = get_data(
       chr_name,
       start_pos,
       cfg.inference.chr_fa_path,
@@ -149,9 +163,17 @@ def inference(cfg):
       os.path.join(cfg.inference.input_folder, cfg.inference.atac_name),
   )
 
+  del_pos = None
+  task = cfg.inference.task
+  if task == 'perturbation':
+    print('Perturbation task')
+    del_pos = cfg.inference.del_pos
+    seq, ctcf, atac  = model.perturbation(seq, ctcf, atac, del_pos, window, start_pos)
+
   pred = model.predict(seq, ctcf, atac)
   cell_header = cfg.inference.cell_line
-  plot_mat(cell_header, pred, chr_name, start_pos)
+  plot_mat(cell_header, pred, chr_name, start_pos, task, del_pos)
+
 
 if __name__ == "__main__":
   inference()
