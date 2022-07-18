@@ -24,7 +24,6 @@ def init_training(args):
     if args.logger.wandb.mode == 'offline':
         print('*** wandb in offline mode ***')
         import os
-        os.environ['WANDB_API_KEY'] = '31fe33f9ef10439c938a7020b946312e92f50dbc'
         os.environ['WANDB_MODE'] = 'offline'
 
     # Early_stopping
@@ -52,15 +51,6 @@ def init_training(args):
     # Assign seed
     pl.seed_everything(args.run.seed, workers=True)
     pl_module = TrainModule(args)
-    '''
-    pl_trainer = pl.Trainer(accelerator="gpu", devices=1,
-                            logger = [csv_logger, wandb_logger],
-                            callbacks = [early_stop_callback,
-                                         checkpoint_callback,
-                                         lr_monitor],
-                            max_epochs = args.trainer.max_epochs
-                            )
-    '''
     pl_trainer = pl.Trainer(strategy='ddp',
                             accelerator="gpu", devices=args.trainer.num_gpu,
                             gradient_clip_val=1,
@@ -101,9 +91,7 @@ class TrainModule(pl.LightningModule):
         if batch_idx % 100 == 0 and self.current_epoch == 0:
             out_img = self.proc_image(outputs)
             mat_img = self.proc_image(mat)
-            #img = np.concatenate([out_img, mat_img], axis = 1)
             if self.args.logger.wandb.mode != 'off':
-                #self.logger[1].log_image(key = f'train_pred_vs_target_{self.current_epoch}_{batch_idx}', 
                 self.logger[1].log_image(key = f'train_pred_vs_target_{batch_idx}', 
                                         images = [out_img, mat_img], 
                                         caption=['Prediction', 'Target'])
@@ -129,9 +117,7 @@ class TrainModule(pl.LightningModule):
         if batch_idx in (np.array([0.3, 0.5, 0.7]) * self.val_length).astype(int):
             out_img = self.proc_image(outputs)
             mat_img = self.proc_image(mat)
-            #img = np.concatenate([out_img, mat_img], axis = 1)
             if self.args.logger.wandb.mode != 'off':
-                #self.logger[1].log_image(key = f'val_pred_vs_target_{self.current_epoch}_{batch_idx}',
                 self.logger[1].log_image(key = f'val_pred_vs_target_{batch_idx}',
                                         images = [out_img, mat_img], 
                                         caption=['Prediction', 'Target'])
