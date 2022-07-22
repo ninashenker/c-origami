@@ -1,2 +1,8 @@
+#Basics
 __pycache__
+
+#Hydra logs
 outputs
+
+# Model and data inputs from Dropbox
+dropbox

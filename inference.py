@@ -59,6 +59,17 @@ class CustomModel(ModelTemplate):
         raise Exception('Deletion range should be smaller than sequence length (2 mb)')
     return seq, ctcf, atac
 
+  def screening(self, seq, ctcf, atac, start_pos, end_pos, del_window, step_size, window):
+    print('SCREENING')
+    del_pos = []
+    for window_start in range(start_pos, end_pos, step_size):
+      window_end = window_start + window
+      del_pos = [{'start': window_start, 'end': window_end}]
+      screened_seq, screened_ctcf, screened_atac = self.perturbation(seq.copy(), ctcf.copy(), atac.copy(), del_pos, window, start_pos)
+      # Calculate impact score on screened sequences
+
+    return seq, ctcf, atac
+
 def locus_config(lengths_dir):
   with open(lengths_dir, 'r') as len_file:
     chr_lengths = json.load(len_file)
@@ -169,7 +180,14 @@ def inference(cfg):
     print('Perturbation task')
     del_pos = cfg.inference.del_pos
     seq, ctcf, atac  = model.perturbation(seq, ctcf, atac, del_pos, window, start_pos)
-
+  
+  elif task == 'screening':
+    print('Screening task')
+    end_pos = cfg.inference.end_pos
+    del_window = cfg.inference.del_window
+    step_size = cfg.inference.step_size
+    chr_screening = model.screening(seq, ctcf, atac, start_pos, end_pos, del_window, step_size, window)
+    
   pred = model.predict(seq, ctcf, atac)
   cell_header = cfg.inference.cell_line
   plot_mat(cell_header, pred, chr_name, start_pos, task, del_pos)
