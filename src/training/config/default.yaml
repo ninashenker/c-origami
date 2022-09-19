@@ -8,8 +8,8 @@ defaults:
 
 run:
     name: 'c-origami'
-    save_root: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction
-    save_path: &run_dir ${run.save_root}/C.Origami/src/training/runs/${run.name}/${now:%Y-%m-%d}/${now:%H-%M-%S-%f}
+    save_root: /gpfs/home/shenkn01/shenkn01/githubs/c-origami/hic_prediction
+    save_path: &run_dir ${run.save_root}/${run.name}/${now:%Y-%m-%d}/${now:%H-%M-%S-%f}
     mode: 'train'
     debug: FALSE
     seed: 2077
@@ -21,7 +21,7 @@ hydra:
 logger:
     wandb:
         mode: 'online'
-        project: 'C-Origami'
+        project: 'c_origami'
 
 dataloader:
     batch_size: 8

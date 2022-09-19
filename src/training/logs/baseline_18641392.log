@@ -1,0 +1,420 @@
+Global seed set to 2077
+GPU available: True, used: True
+TPU available: False, using: 0 TPU cores
+IPU available: False, using: 0 IPUs
+Global seed set to 2077
+Global seed set to 2077
+initializing distributed: GLOBAL_RANK: 0, MEMBER: 1/4
+Global seed set to 2077
+Global seed set to 2077
+Global seed set to 2077
+initializing distributed: GLOBAL_RANK: 1, MEMBER: 2/4
+Initializing ConvModel
+Initializing ConvTransModel
+Feature path: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/genomic_features/ctcf_log2fc.bw 
+ Normalization status: None
+Feature path: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/genomic_features/atac.bw 
+ Normalization status: log
+Loading chromosome datasets...
+Loading chromosome chr1...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr1.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr1.npz
+Loading chromosome chr2...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr2.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr2.npz
+Loading chromosome chr3...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr3.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr3.npz
+Loading chromosome chr4...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr4.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr4.npz
+Loading chromosome chr5...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr5.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr5.npz
+Loading chromosome chr6...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr6.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr6.npz
+Loading chromosome chr7...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr7.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr7.npz
+Loading chromosome chr8...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr8.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr8.npz
+Loading chromosome chr9...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr9.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr9.npz
+Loading chromosome chr11...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr11.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr11.npz
+Loading chromosome chr12...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr12.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr12.npz
+Loading chromosome chr13...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr13.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr13.npz
+Loading chromosome chr14...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr14.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr14.npz
+Loading chromosome chr16...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr16.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr16.npz
+Loading chromosome chr17...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr17.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr17.npz
+Loading chromosome chr18...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr18.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr18.npz
+Chromosome datasets loaded
+Feature path: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/genomic_features/ctcf_log2fc.bw 
+ Normalization status: None
+Feature path: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/genomic_features/atac.bw 
+ Normalization status: log
+Loading chromosome datasets...
+Loading chromosome chr10...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr10.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr10.npz
+Chromosome datasets loaded
+Validation loader length: 30.625
+Feature path: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/genomic_features/ctcf_log2fc.bw 
+ Normalization status: None
+Feature path: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/genomic_features/atac.bw 
+ Normalization status: log
+Loading chromosome datasets...
+Loading chromosome chr15...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr15.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr15.npz
+Chromosome datasets loaded
+[2022-08-22 16:22:15,794][torch.distributed.distributed_c10d][INFO] - Added key: store_based_barrier_key:1 to store for rank: 1
+Global seed set to 2077
+initializing distributed: GLOBAL_RANK: 3, MEMBER: 4/4
+Initializing ConvModel
+Initializing ConvTransModel
+Feature path: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/genomic_features/ctcf_log2fc.bw 
+ Normalization status: None
+Feature path: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/genomic_features/atac.bw 
+ Normalization status: log
+Loading chromosome datasets...
+Loading chromosome chr1...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr1.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr1.npz
+Loading chromosome chr2...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr2.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr2.npz
+Loading chromosome chr3...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr3.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr3.npz
+Loading chromosome chr4...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr4.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr4.npz
+Loading chromosome chr5...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr5.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr5.npz
+Loading chromosome chr6...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr6.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr6.npz
+Loading chromosome chr7...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr7.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr7.npz
+Loading chromosome chr8...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr8.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr8.npz
+Loading chromosome chr9...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr9.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr9.npz
+Loading chromosome chr11...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr11.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr11.npz
+Loading chromosome chr12...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr12.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr12.npz
+Loading chromosome chr13...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr13.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr13.npz
+Loading chromosome chr14...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr14.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr14.npz
+Loading chromosome chr16...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr16.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr16.npz
+Loading chromosome chr17...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr17.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr17.npz
+Loading chromosome chr18...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr18.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr18.npz
+Chromosome datasets loaded
+Feature path: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/genomic_features/ctcf_log2fc.bw 
+ Normalization status: None
+Feature path: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/genomic_features/atac.bw 
+ Normalization status: log
+Loading chromosome datasets...
+Loading chromosome chr10...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr10.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr10.npz
+Chromosome datasets loaded
+Validation loader length: 30.625
+Feature path: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/genomic_features/ctcf_log2fc.bw 
+ Normalization status: None
+Feature path: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/genomic_features/atac.bw 
+ Normalization status: log
+Loading chromosome datasets...
+Loading chromosome chr15...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr15.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr15.npz
+Chromosome datasets loaded
+[2022-08-22 16:22:20,021][torch.distributed.distributed_c10d][INFO] - Added key: store_based_barrier_key:1 to store for rank: 3
+Global seed set to 2077
+initializing distributed: GLOBAL_RANK: 2, MEMBER: 3/4
+Initializing ConvModel
+Initializing ConvTransModel
+Feature path: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/genomic_features/ctcf_log2fc.bw 
+ Normalization status: None
+Feature path: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/genomic_features/atac.bw 
+ Normalization status: log
+Loading chromosome datasets...
+Loading chromosome chr1...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr1.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr1.npz
+Loading chromosome chr2...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr2.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr2.npz
+Loading chromosome chr3...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr3.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr3.npz
+Loading chromosome chr4...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr4.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr4.npz
+Loading chromosome chr5...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr5.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr5.npz
+Loading chromosome chr6...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr6.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr6.npz
+Loading chromosome chr7...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr7.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr7.npz
+Loading chromosome chr8...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr8.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr8.npz
+Loading chromosome chr9...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr9.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr9.npz
+Loading chromosome chr11...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr11.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr11.npz
+Loading chromosome chr12...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr12.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr12.npz
+Loading chromosome chr13...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr13.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr13.npz
+Loading chromosome chr14...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr14.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr14.npz
+Loading chromosome chr16...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr16.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr16.npz
+Loading chromosome chr17...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr17.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr17.npz
+Loading chromosome chr18...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr18.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr18.npz
+Chromosome datasets loaded
+Feature path: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/genomic_features/ctcf_log2fc.bw 
+ Normalization status: None
+Feature path: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/genomic_features/atac.bw 
+ Normalization status: log
+Loading chromosome datasets...
+Loading chromosome chr10...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr10.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr10.npz
+Chromosome datasets loaded
+Validation loader length: 30.625
+Feature path: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/genomic_features/ctcf_log2fc.bw 
+ Normalization status: None
+Feature path: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/genomic_features/atac.bw 
+ Normalization status: log
+Loading chromosome datasets...
+Loading chromosome chr15...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr15.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr15.npz
+Chromosome datasets loaded
+[2022-08-22 16:22:20,146][torch.distributed.distributed_c10d][INFO] - Added key: store_based_barrier_key:1 to store for rank: 2
+Initializing ConvModel
+Initializing ConvTransModel
+Feature path: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/genomic_features/ctcf_log2fc.bw 
+ Normalization status: None
+Feature path: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/genomic_features/atac.bw 
+ Normalization status: log
+Loading chromosome datasets...
+Loading chromosome chr1...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr1.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr1.npz
+Loading chromosome chr2...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr2.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr2.npz
+Loading chromosome chr3...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr3.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr3.npz
+Loading chromosome chr4...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr4.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr4.npz
+Loading chromosome chr5...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr5.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr5.npz
+Loading chromosome chr6...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr6.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr6.npz
+Loading chromosome chr7...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr7.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr7.npz
+Loading chromosome chr8...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr8.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr8.npz
+Loading chromosome chr9...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr9.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr9.npz
+Loading chromosome chr11...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr11.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr11.npz
+Loading chromosome chr12...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr12.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr12.npz
+Loading chromosome chr13...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr13.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr13.npz
+Loading chromosome chr14...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr14.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr14.npz
+Loading chromosome chr16...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr16.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr16.npz
+Loading chromosome chr17...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr17.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr17.npz
+Loading chromosome chr18...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr18.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr18.npz
+Chromosome datasets loaded
+Feature path: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/genomic_features/ctcf_log2fc.bw 
+ Normalization status: None
+Feature path: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/genomic_features/atac.bw 
+ Normalization status: log
+Loading chromosome datasets...
+Loading chromosome chr10...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr10.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr10.npz
+Chromosome datasets loaded
+Validation loader length: 30.625
+Feature path: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/genomic_features/ctcf_log2fc.bw 
+ Normalization status: None
+Feature path: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/genomic_features/atac.bw 
+ Normalization status: log
+Loading chromosome datasets...
+Loading chromosome chr15...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr15.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr15.npz
+Chromosome datasets loaded
+[2022-08-22 16:22:20,155][torch.distributed.distributed_c10d][INFO] - Added key: store_based_barrier_key:1 to store for rank: 0
+[2022-08-22 16:22:20,156][torch.distributed.distributed_c10d][INFO] - Rank 1: Completed store-based barrier for 4 nodes.
+[2022-08-22 16:22:20,156][torch.distributed.distributed_c10d][INFO] - Rank 0: Completed store-based barrier for 4 nodes.
+----------------------------------------------------------------------------------------------------
+distributed_backend=nccl
+All distributed processes registered. Starting with 4 processes
+----------------------------------------------------------------------------------------------------
+
+[2022-08-22 16:22:20,157][torch.distributed.distributed_c10d][INFO] - Rank 2: Completed store-based barrier for 4 nodes.
+[2022-08-22 16:22:20,165][torch.distributed.distributed_c10d][INFO] - Rank 3: Completed store-based barrier for 4 nodes.
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0,1,2,3]
+LOCAL_RANK: 1 - CUDA_VISIBLE_DEVICES: [0,1,2,3]
+LOCAL_RANK: 2 - CUDA_VISIBLE_DEVICES: [0,1,2,3]
+LOCAL_RANK: 3 - CUDA_VISIBLE_DEVICES: [0,1,2,3]
+wandb: ERROR api_key not configured (no-tty). call wandb.login(key=[your_api_key])
+Error executing job with overrides: ['run.name=c-origami-baseline']
+Traceback (most recent call last):
+  File "/gpfs/home/shenkn01/.conda/envs/pip_package/lib/python3.9/site-packages/pytorch_lightning/trainer/trainer.py", line 685, in _call_and_handle_interrupt
+    return trainer_fn(*args, **kwargs)
+  File "/gpfs/home/shenkn01/.conda/envs/pip_package/lib/python3.9/site-packages/pytorch_lightning/trainer/trainer.py", line 777, in _fit_impl
+    self._run(model, ckpt_path=ckpt_path)
+  File "/gpfs/home/shenkn01/.conda/envs/pip_package/lib/python3.9/site-packages/pytorch_lightning/trainer/trainer.py", line 1188, in _run
+    self._pre_dispatch()
+  File "/gpfs/home/shenkn01/.conda/envs/pip_package/lib/python3.9/site-packages/pytorch_lightning/trainer/trainer.py", line 1224, in _pre_dispatch
+    self._log_hyperparams()
+  File "/gpfs/home/shenkn01/.conda/envs/pip_package/lib/python3.9/site-packages/pytorch_lightning/trainer/trainer.py", line 1259, in _log_hyperparams
+    self.logger.log_hyperparams(hparams_initial)
+  File "/gpfs/home/shenkn01/.conda/envs/pip_package/lib/python3.9/site-packages/pytorch_lightning/loggers/base.py", line 411, in log_hyperparams
+    logger.log_hyperparams(params)
+  File "/gpfs/home/shenkn01/.conda/envs/pip_package/lib/python3.9/site-packages/pytorch_lightning/utilities/distributed.py", line 50, in wrapped_fn
+    return fn(*args, **kwargs)
+  File "/gpfs/home/shenkn01/.conda/envs/pip_package/lib/python3.9/site-packages/pytorch_lightning/loggers/wandb.py", line 362, in log_hyperparams
+    self.experiment.config.update(params, allow_val_change=True)
+  File "/gpfs/home/shenkn01/.conda/envs/pip_package/lib/python3.9/site-packages/pytorch_lightning/loggers/base.py", line 43, in experiment
+    return get_experiment() or DummyExperiment()
+  File "/gpfs/home/shenkn01/.conda/envs/pip_package/lib/python3.9/site-packages/pytorch_lightning/utilities/distributed.py", line 50, in wrapped_fn
+    return fn(*args, **kwargs)
+  File "/gpfs/home/shenkn01/.conda/envs/pip_package/lib/python3.9/site-packages/pytorch_lightning/loggers/base.py", line 41, in get_experiment
+    return fn(self)
+  File "/gpfs/home/shenkn01/.conda/envs/pip_package/lib/python3.9/site-packages/pytorch_lightning/loggers/wandb.py", line 339, in experiment
+    self._experiment = wandb.init(**self._wandb_init)
+  File "/gpfs/home/shenkn01/.conda/envs/pip_package/lib/python3.9/site-packages/wandb/sdk/wandb_init.py", line 996, in init
+    wi.setup(kwargs)
+  File "/gpfs/home/shenkn01/.conda/envs/pip_package/lib/python3.9/site-packages/wandb/sdk/wandb_init.py", line 237, in setup
+    wandb_login._login(
+  File "/gpfs/home/shenkn01/.conda/envs/pip_package/lib/python3.9/site-packages/wandb/sdk/wandb_login.py", line 297, in _login
+    wlogin.prompt_api_key()
+  File "/gpfs/home/shenkn01/.conda/envs/pip_package/lib/python3.9/site-packages/wandb/sdk/wandb_login.py", line 227, in prompt_api_key
+    raise UsageError("api_key not configured (no-tty). call " + directive)
+wandb.errors.UsageError: api_key not configured (no-tty). call wandb.login(key=[your_api_key])
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/gpfs/data/abl/home/shenkn01/githubs/c-origami/src/training/main.py", line 18, in main
+    init_training(args)
+  File "/gpfs/data/abl/home/shenkn01/githubs/c-origami/src/training/main.py", line 66, in init_training
+    pl_trainer.fit(pl_module, trainloader, valloader)
+  File "/gpfs/home/shenkn01/.conda/envs/pip_package/lib/python3.9/site-packages/pytorch_lightning/trainer/trainer.py", line 740, in fit
+    self._call_and_handle_interrupt(
+  File "/gpfs/home/shenkn01/.conda/envs/pip_package/lib/python3.9/site-packages/pytorch_lightning/trainer/trainer.py", line 698, in _call_and_handle_interrupt
+    self.training_type_plugin.reconciliate_processes(traceback.format_exc())
+  File "/gpfs/home/shenkn01/.conda/envs/pip_package/lib/python3.9/site-packages/pytorch_lightning/plugins/training_type/ddp.py", line 533, in reconciliate_processes
+    raise DeadlockDetectedException(f"DeadLock detected from rank: {self.global_rank} \n {trace}")
+pytorch_lightning.utilities.exceptions.DeadlockDetectedException: DeadLock detected from rank: 0 
+ Traceback (most recent call last):
+  File "/gpfs/home/shenkn01/.conda/envs/pip_package/lib/python3.9/site-packages/pytorch_lightning/trainer/trainer.py", line 685, in _call_and_handle_interrupt
+    return trainer_fn(*args, **kwargs)
+  File "/gpfs/home/shenkn01/.conda/envs/pip_package/lib/python3.9/site-packages/pytorch_lightning/trainer/trainer.py", line 777, in _fit_impl
+    self._run(model, ckpt_path=ckpt_path)
+  File "/gpfs/home/shenkn01/.conda/envs/pip_package/lib/python3.9/site-packages/pytorch_lightning/trainer/trainer.py", line 1188, in _run
+    self._pre_dispatch()
+  File "/gpfs/home/shenkn01/.conda/envs/pip_package/lib/python3.9/site-packages/pytorch_lightning/trainer/trainer.py", line 1224, in _pre_dispatch
+    self._log_hyperparams()
+  File "/gpfs/home/shenkn01/.conda/envs/pip_package/lib/python3.9/site-packages/pytorch_lightning/trainer/trainer.py", line 1259, in _log_hyperparams
+    self.logger.log_hyperparams(hparams_initial)
+  File "/gpfs/home/shenkn01/.conda/envs/pip_package/lib/python3.9/site-packages/pytorch_lightning/loggers/base.py", line 411, in log_hyperparams
+    logger.log_hyperparams(params)
+  File "/gpfs/home/shenkn01/.conda/envs/pip_package/lib/python3.9/site-packages/pytorch_lightning/utilities/distributed.py", line 50, in wrapped_fn
+    return fn(*args, **kwargs)
+  File "/gpfs/home/shenkn01/.conda/envs/pip_package/lib/python3.9/site-packages/pytorch_lightning/loggers/wandb.py", line 362, in log_hyperparams
+    self.experiment.config.update(params, allow_val_change=True)
+  File "/gpfs/home/shenkn01/.conda/envs/pip_package/lib/python3.9/site-packages/pytorch_lightning/loggers/base.py", line 43, in experiment
+    return get_experiment() or DummyExperiment()
+  File "/gpfs/home/shenkn01/.conda/envs/pip_package/lib/python3.9/site-packages/pytorch_lightning/utilities/distributed.py", line 50, in wrapped_fn
+    return fn(*args, **kwargs)
+  File "/gpfs/home/shenkn01/.conda/envs/pip_package/lib/python3.9/site-packages/pytorch_lightning/loggers/base.py", line 41, in get_experiment
+    return fn(self)
+  File "/gpfs/home/shenkn01/.conda/envs/pip_package/lib/python3.9/site-packages/pytorch_lightning/loggers/wandb.py", line 339, in experiment
+    self._experiment = wandb.init(**self._wandb_init)
+  File "/gpfs/home/shenkn01/.conda/envs/pip_package/lib/python3.9/site-packages/wandb/sdk/wandb_init.py", line 996, in init
+    wi.setup(kwargs)
+  File "/gpfs/home/shenkn01/.conda/envs/pip_package/lib/python3.9/site-packages/wandb/sdk/wandb_init.py", line 237, in setup
+    wandb_login._login(
+  File "/gpfs/home/shenkn01/.conda/envs/pip_package/lib/python3.9/site-packages/wandb/sdk/wandb_login.py", line 297, in _login
+    wlogin.prompt_api_key()
+  File "/gpfs/home/shenkn01/.conda/envs/pip_package/lib/python3.9/site-packages/wandb/sdk/wandb_login.py", line 227, in prompt_api_key
+    raise UsageError("api_key not configured (no-tty). call " + directive)
+wandb.errors.UsageError: api_key not configured (no-tty). call wandb.login(key=[your_api_key])
+
+
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.

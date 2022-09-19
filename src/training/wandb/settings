@@ -1,0 +1,5 @@
+[default]
+entity = ninashenker9
+project = c_origami
+base_url = https://api.wandb.ai
+

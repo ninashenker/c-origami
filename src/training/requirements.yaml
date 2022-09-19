@@ -1,4 +1,4 @@
-name: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/conda/corigami
+name: /gpfs/home/shenkn01/.conda/envs/
 channels:
   - gaiar
   - menpo
@@ -190,4 +190,4 @@ dependencies:
   - zipp=3.8.0=pyhd8ed1ab_0
   - zlib=1.2.12=h166bdaf_1
   - zstd=1.4.9=haebb681_0
-prefix: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/conda/corigami
+prefix: /gpfs/home/shenkn01/.conda/envs/

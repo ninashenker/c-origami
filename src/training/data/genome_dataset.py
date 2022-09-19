@@ -99,7 +99,7 @@ class GenomeDataset(Dataset):
         '''
         Get a list of all chr names. e.g. [chr1 , chr2, ...]
         '''
-        chrs = list(range(1, 23))
+        chrs = list(range(1, 19))
         chrs.append('X')
         #chrs.append('Y')
         chr_names = []

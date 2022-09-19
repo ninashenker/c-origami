@@ -6,3 +6,6 @@ outputs
 
 # Model and data inputs from Dropbox
 dropbox
+
+#Output from model predictions
+src/inference/prediction_matrix_output/

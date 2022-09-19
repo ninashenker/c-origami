@@ -1,0 +1,79 @@
+Global seed set to 2077
+GPU available: True, used: True
+TPU available: False, using: 0 TPU cores
+IPU available: False, using: 0 IPUs
+Initializing ConvModel
+Initializing ConvTransModel
+Feature path: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/genomic_features/ctcf_log2fc.bw 
+ Normalization status: None
+Feature path: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/genomic_features/atac.bw 
+ Normalization status: log
+Loading chromosome datasets...
+Loading chromosome chr1...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr1.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr1.npz
+Loading chromosome chr2...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr2.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr2.npz
+Loading chromosome chr3...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr3.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr3.npz
+Loading chromosome chr4...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr4.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr4.npz
+Loading chromosome chr5...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr5.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr5.npz
+Loading chromosome chr6...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr6.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr6.npz
+Loading chromosome chr7...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr7.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr7.npz
+Loading chromosome chr8...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr8.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr8.npz
+Loading chromosome chr9...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr9.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr9.npz
+Loading chromosome chr11...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr11.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr11.npz
+Loading chromosome chr12...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr12.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr12.npz
+Loading chromosome chr13...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr13.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr13.npz
+Loading chromosome chr14...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr14.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr14.npz
+Loading chromosome chr16...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr16.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr16.npz
+Loading chromosome chr17...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr17.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr17.npz
+Loading chromosome chr18...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr18.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr18.npz
+Loading chromosome chr19...
+Reading sequence: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/../dna_sequence/chr19.fa.gz
+Reading Hi-C: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/hic_matrix/chr19.npz
+Error executing job with overrides: ['run.name=c-origami-baseline']
+Traceback (most recent call last):
+  File "/gpfs/data/abl/home/shenkn01/githubs/c-origami/src/training/main.py", line 18, in main
+    init_training(args)
+  File "/gpfs/data/abl/home/shenkn01/githubs/c-origami/src/training/main.py", line 63, in init_training
+    trainloader = pl_module.get_dataloader(args, 'train')
+  File "/gpfs/data/abl/home/shenkn01/githubs/c-origami/src/training/main.py", line 196, in get_dataloader
+    dataset = self.get_dataset(args, mode)
+  File "/gpfs/data/abl/home/shenkn01/githubs/c-origami/src/training/main.py", line 184, in get_dataset
+    dataset = genome_dataset.GenomeDataset(celltype_root,
+  File "/gpfs/data/abl/home/shenkn01/githubs/c-origami/src/training/data/genome_dataset.py", line 54, in __init__
+    self.chr_data, self.lengths = self.load_chrs(self.chr_names, self.genomic_features)
+  File "/gpfs/data/abl/home/shenkn01/githubs/c-origami/src/training/data/genome_dataset.py", line 75, in load_chrs
+    omit_regions = self.centrotelo_dict[chr_name]
+KeyError: 'chr20'
+
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.
