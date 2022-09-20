@@ -1,10 +1,11 @@
 model_path: /gpfs/data/abl/home/shenkn01/githubs/c-origami/hic_prediction/c-origami-baseline/2022-08-22/20-52-36-412701/models/epoch=81-step=41737.ckpt
-input_folder: /gpfs/data/abl/home/shenkn01/githubs/debugging/
-ctcf_name: nicks_ctcf_log2fc_undiff_prog.bw
-atac_name: nicks_atac_pDC_unstim.bw
+#input_folder: /gpfs/data/abl/home/shenkn01/githubs/c-origami/hic_prediction/data/mm10/Patski/genomic_features/undiff_prog
+input_folder: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/genomic_features/
+ctcf_name: ctcf_log2fc.bw
+atac_name: atac.bw
 chr_lengths: chr_length.json
 chr_fa_path: /gpfs/data/abl/home/shenkn01/githubs/c-origami/hic_prediction/data/mm10/dna_sequence/
-cell_line: Patski_pDC_unstim
+cell_line: Patski_gt
 chr_num: 6
 start_pos: 102300000
 task: prediction # choose between predict or perturbation or screening

@@ -64,7 +64,7 @@ wget -O human_model.pt https://www.dropbox.com/s/jkx1jxjyoumq6e8/hg38_state_dict
 ```
 For mouse genome:
 ```bash
-wget -O mouse_model.pt https://www.dropbox.com/s/9lmu1lc3an8whp4/mm10_state_dict_73.pt?dl=0
+wget -O mouse_model.pt https://www.dropbox.com/s/67kopnqxd08gwum/epoch%3D81-step%3D41737.ckpt?dl=0
 
 ```
 
