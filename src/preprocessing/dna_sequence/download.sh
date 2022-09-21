@@ -7,7 +7,7 @@ if [ "$#" -ne 2 ]; then
 fi
 
 ASSEM=$1
-DIR=$2
+DIR="$2"
 
 # Download DNA data
 if [ "$ASSEM" = "hg38" ] || [ "$ASSEM" = "hg19" ]
