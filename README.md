@@ -16,7 +16,7 @@ Publications associated with the C. Origami project can be found
 
 ### CTCF/ATAC/DNA data 
 In order to use our pipeline we require the sequencing data to be pre-processed. The input for both the CTCF and ATAC data should be in the form of a bigwig (bw) file. The bigwig should be normalized to the total number of reads and should allow visual inspection of the data using an application such as [IGV](https://igv.org).
-C.Origami has been trained on the human (hg38) and mouse (mm10) genome. You can download each chromosome along with a json file containing the length of each chromosome by running our python script under `src/preprocessing/dna_sequence/download.sh`
+C.Origami has been trained on the human (hg38) and mouse (mm10) genome. You can download each chromosome along with a json file containing the length of each chromosome by running our python script under `src/preprocessing/dna_sequence/download.sh`.
 
 For human chromosomes:
 ```bash
@@ -57,7 +57,17 @@ For mouse genome:
 wget -O mouse_model.pt https://www.dropbox.com/s/67kopnqxd08gwum/epoch%3D81-step%3D41737.ckpt?dl=0
 ```
 We use [Hydra](https://github.com/facebookresearch/hydra)  configs for our training and inference pipelines. 
+
 # Training
+
+Under `src/training/config` you will find the config for both the input into the model and train parameters. 
+
+The config `default.yaml` allows you to specify where you would like to save the model and set your hyperparameters. 
+
+Under `dataset` directory you will find the input data config where you can specify `data_root`, `assembly`, and `celltype`. 
+
+Gather the pre-processed ctcf and atac bigwigs under your root directory followed by a subdirectory with the assembly name and inside another directory named by the celltype e.g. `root/mm10/Patski`. Please make sure the directories match what was specified in the config. 
+
 
 ```python
 python train.py
@@ -67,7 +77,7 @@ python train.py
 
 C.Origami can perform de novo prediction of cell type-specific chromatin architecture using both DNA sequence features and cell type-specific genomic information.
 
-For any inference application, download one of our pre-trained models or use your own model. The config.yaml file under `src/inference` allows you to set the task to **predict**, **perturbation**, or **screening**
+For any inference application, download one of our pre-trained models or use your own model. The config.yaml file under `src/inference` allows you to set the task to **predict**, **perturbation**, or **screening**.
 
 ```python
 python inference.py
@@ -75,7 +85,7 @@ python inference.py
 
 ## Prediction
 
-Set the parameters in config.yaml in order to specify the path of your inputs and the chromosome/start position of your prediction.
+Set the parameters in config.yaml in order to specify the path of your inputs and the chromosome/start position of your prediction. 
 
 ```python
 model_path: root/mouse_model.pt 
@@ -92,8 +102,7 @@ task: prediction
 
 ## Editing/Perturbation
 
-For now the only perturbation implemented is deletion. Fill out the contig.yaml with the same parameters as predict as well as the start and end position. If you want to do multiple deletions, you can specify in the config
-by creating additional start and end positions. 
+For now the only perturbation implemented is deletion. Fill out the contig.yaml with the same parameters as predict as well as the start and end position. If you want to do multiple deletions, you can specify in the config by creating additional start and end positions. 
 
 ```python
 # Same parameters as prediction plus these additional perturbation only criteria
@@ -135,8 +144,7 @@ C-Origami is MIT licensed, as found in the [LICENSE file](https://github.com/nin
 
 ## Cite
 
-If you use the C-Origami code in your project, please cite the bioRxiv 
-paper:
+If you use the C-Origami code in your project, please cite the bioRxiv paper:
 
 ```BibTeX
 @inproceedings{tan2020,
