@@ -1,11 +1,6 @@
 #!/bin/bash
 
 ASSEM=$1
-#DIR=./downloads
-DIR="/gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/${ASSEM}/dna_sequence"
-
-# Create dir
-mkdir -p $DIR
 
 # Download DNA data
 if [ $ASSEM = "hg38" ] || [ $ASSEM = "hg19" ]
@@ -26,4 +21,4 @@ do
 done
 
 # Get DNA length
-python get_chr_lengths.py $ASSEM $DIR
+python get_chr_lengths.py $ASSEM

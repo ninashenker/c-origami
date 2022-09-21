@@ -8,33 +8,25 @@
 
 C-Origami is a deep neural network model for predicting de novo cell type-specific chromatin architecture. By incorporating DNA sequence, CTCF binding, and chromatin accessibility profiles, C-Origami achieves accurate cell type-specific prediction.
 
-Datasets can be downloaded from (link). Publications
-associated with the C. Origami project can be found
+Publications associated with the C. Origami project can be found
 [at the end of this README](#list-of-papers).
 
 
 ## Documentation
 
 ### CTCF/ATAC/DNA data 
+In order to use our pipeline we require the sequencing data to be pre-processed. The input for both the CTCF and ATAC data should be in the form of a bigwig (bw) file. The bigwig should be normalized to the total number of reads and should allow visual inspection of the data using an application such as [IGV](https://igv.org).
+C.Origami has been trained on the human (hg38) and mouse (mm10) genome. You can download each chromosome along with a json file containing the length of each chromosome by running our python script under `src/preprocessing/dna_sequence/download.sh`
 
-### Hi-C ground truth data
-
-### Code Repository
-
-For code documentation, most functions and classes have accompanying docstrings
-that you can access via the `help` function in IPython. For example:
-
-```python
-from c-origami import Prediction
-
-help(Prediction)
+For human chromosomes:
+```bash
+download.sh hg38
 ```
-
+For mouse chromosomes:
+```bash
+download.sh mm10
+```
 ## Dependencies and Installation
-
-**Note:** Contributions to the code are continuously tested via GitHub actions.
-If you encounter an issue, the best first thing to do is to try to match the
-test environments in `requirements.txt` and `dev-requirements.txt`.
 
 First install PyTorch according to the directions at the
 [PyTorch Website](https://pytorch.org/get-started/) for your operating system
@@ -54,37 +46,88 @@ pip install -e .
 ```
 ## Download model and other relevant resource files
 
-Next, download the model and other files needed for running C.Origami. Since the files are large and optional, you can download what you need. It is recommended you download the model needed along with the hg38 or mm10 reference genome. 
-You may also download the preprocessed CTCF/ATAC data or use your own fastq files. 
+Next, download the model and other files needed for running C.Origami. You can also train your own model instead of using ours. See the [training](#Training) section below.
 
 For human genome:
 ```bash
 wget -O human_model.pt https://www.dropbox.com/s/jkx1jxjyoumq6e8/hg38_state_dict_43.pt?dl=0
-
 ```
 For mouse genome:
 ```bash
 wget -O mouse_model.pt https://www.dropbox.com/s/67kopnqxd08gwum/epoch%3D81-step%3D41737.ckpt?dl=0
-
 ```
-
+We use [Hydra](https://github.com/facebookresearch/hydra)  configs for our training and inference pipelines. 
 # Training
 
-## Training your own  model
+```python
+python train.py
+```
 
 # Inference
 
-For any inference application, download one of our pre-trained models or use your own model.
+C.Origami can perform de novo prediction of cell type-specific chromatin architecture using both DNA sequence features and cell type-specific genomic information.
+
+For any inference application, download one of our pre-trained models or use your own model. The config.yaml file under `src/inference` allows you to set the task to **predict**, **perturbation**, or **screening**
+
+```python
+python inference.py
+```
 
 ## Prediction
 
-C.Origami can perform de novo prediction of cell type-specific chromatin architecture using both DNA sequence features and cell type-specific genomic information.
+Set the parameters in config.yaml in order to specify the path of your inputs and the chromosome/start position of your prediction.
 
+```python
+model_path: root/mouse_model.pt 
+input_folder: root/genomic_features/
+ctcf_name: ctcf_log2fc.bw
+atac_name: atac.bw
+chr_fa_path: root/chrs/
+chr_lengths: chr_length.json
+cell_line: Patski
+chr_num: int
+start_pos: int
+task: prediction
+```
 
 ## Editing/Perturbation
 
+For now the only perturbation implemented is deletion. Fill out the contig.yaml with the same parameters as predict as well as the start and end position. If you want to do multiple deletions, you can specify in the config
+by creating additional start and end positions. 
+
+```python
+# Same parameters as prediction plus these additional perturbation only criteria
+task: perturbation
+del_pos
+  -start: int 
+    end:  int
+  -start: int
+    end:  int
+```
 ## Screening
 
+In silico genetic screening can be used to see what regions of perturbation lead to the greatest impact on the prediction. Running this task will result in a bedgraph file consisting of the chr number, start position, end position, and impact score. The more impact the perturbation had, the higher the impact score.
+
+Screening can be done only for one chromosome at a time. The end position unless otherwise specified will be 2MB from the start position specified above it. The `del_window` is allows you to set the size of the deletion you want to make or in other words how many base pairs to remove. The `step_size` is how far each deletion is from the past deletion (start position) - please note it is fine for the deletions to overlap. 
+
+```python
+ # Same parameters as prediction plus these additional screening only criteria
+ task: perturbation
+ end_pos: int     # optional (default is to screen 2 MB from the start pos)
+ del_window: int  # how many base pairs to remove
+ step_size: int   # how far each deletion is from the next
+
+```
+
+**Please note that screening can be very computationally intensive especially when screening at a 1 Kb resolution or less. For instance, screening on chromosome 8, a medium-size chromosome which has a length of 146Mb, requires the model to make 146Mb / 1Kb * 2 predictions = 292,000 separate predictions.**
+
+## Multi-run 
+
+If you would like to run multiple predictions at once you can use Hydra's multirun function. For example if you want to predict chromosome 1,3,7 at positions 2MB, 50MB, 75MB we can run the following command:
+
+```bash
+python inference.py --multirun chr_num=1,3,7 start_pos=2000000,50000000,75000000
+```
 
 ## License
 

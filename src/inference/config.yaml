@@ -1,24 +1,23 @@
-model_path: /gpfs/data/abl/home/shenkn01/githubs/c-origami/hic_prediction/c-origami-baseline/2022-08-22/20-52-36-412701/models/epoch=81-step=41737.ckpt
-#input_folder: /gpfs/data/abl/home/shenkn01/githubs/c-origami/hic_prediction/data/mm10/Patski/genomic_features/undiff_prog
-input_folder: /gpfs/data/tsirigoslab/home/jt3545/hic_prediction/C.Origami/data/mm10/patski/genomic_features/
+model_path:
+input_folder:
 ctcf_name: ctcf_log2fc.bw
 atac_name: atac.bw
+chr_fa_path:
 chr_lengths: chr_length.json
-chr_fa_path: /gpfs/data/abl/home/shenkn01/githubs/c-origami/hic_prediction/data/mm10/dna_sequence/
-cell_line: Patski_gt
-chr_num: 6
-start_pos: 102300000
+cell_line: Patski # Add cell line name
+chr_num: 1
+start_pos: 0
 task: prediction # choose between predict or perturbation or screening
 
 #Perturbation only configs
 del_pos: 
-  - start: 75500000
-    end: 76000000
-  - start: 76500000
-    end: 76900000
+  - start: 
+    end: 
+  - start: 
+    end:
 
 #Screening only configs
-end_pos: 120092757      # optional (default is to screen 2 MB from the start pos)
-del_window: 1000         # how many base pairs to remove
-step_size: 1000          # how far each deletion is from the next
+end_pos:       # optional (default is to screen 2 MB from the start pos)
+del_window:    # how many base pairs to remove
+step_size:     # how far each deletion is from the next
 

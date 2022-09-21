@@ -66,7 +66,7 @@ class CustomModel(ModelTemplate):
 
   def screening(self, seq, ctcf, atac, start_pos, end_pos, del_window, step_size, window, chr_num):
     #scores, chr_nums, start_poss, end_poss = ([] for i in range(4))
-    with open(screening.bedgraph, 'w') as bg:
+    with open(f'screening_{chr_num}.bedgraph', 'w') as bg:
       for window_start in range(start_pos, end_pos, step_size):
         window_end = window_start + del_window
         del_pos = [{'start': window_start, 'end': window_end}]
