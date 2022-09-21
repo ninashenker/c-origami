@@ -10,7 +10,7 @@ import json
 import pyBigWig as pbw
 from matplotlib.colors import LinearSegmentedColormap
 
-sys.path.append("../training")
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", "training"))
 from main import TrainModule
 
 from model_class import ModelTemplate
@@ -193,14 +193,14 @@ def inference(cfg):
     print('Perturbation task')
     del_pos = cfg.del_pos
     seq, ctcf, atac  = model.perturbation(seq, ctcf, atac, del_pos, window, start_pos)
-  
+
   elif task == 'screening':
     print('Screening task')
     end_pos = cfg.end_pos
     del_window = cfg.del_window
     step_size = cfg.step_size
     chr_screening = model.screening(seq, ctcf, atac, start_pos, end_pos, del_window, step_size, window, chr_name)
-    
+
   pred = model.predict(seq, ctcf, atac)
   cell_header = cfg.cell_line
   plot_mat(cell_header, pred, chr_name, start_pos, task, del_pos)
