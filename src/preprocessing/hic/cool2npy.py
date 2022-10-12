@@ -19,8 +19,8 @@ def compress_diag(mat, window):
     # NOTE: dict is probably suboptimal here. We could have a big list double the window_size
     diag_dict = {}
     for d in range(window):
-        diag_dict[str(d)] = mat.diagonal(d).astype(np.half)
-        diag_dict[str(-d)] = mat.diagonal(-d).astype(np.half)
+        diag_dict[str(d)] = np.nan_to_num(mat.diagonal(d).astype(np.half))
+        diag_dict[str(-d)] = np.nan_to_num(mat.diagonal(-d).astype(np.half))
     return diag_dict
 
 if __name__ == '__main__':
